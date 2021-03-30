@@ -1,2 +1,2 @@
 # flink-config
-Configuration for Flink Jobs
+Configuration for deploying Sunbird Data Pipeline Flink Jobs
