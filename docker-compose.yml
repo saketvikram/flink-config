@@ -1,10 +1,12 @@
 version: "3"
 
 services:
+  # jobmanager and taskmanager containers for telemetry-extractor
   jobmanager-te:
     build: .
     ports:
       - "8081:8081"
+    # to config azure state backend add: -Dfs.azure.account.key.{{ azure_storage_account }}.blob.core.windows.net: {{ azure_storage_secret }}
     command:
       - |
         /opt/flink/bin/standalone-job.sh start-foreground \
@@ -15,8 +17,8 @@ services:
         -Dblob.server.port=6124 \
         -Dqueryable-state.server.ports=6125 \
         -Djobmanager.heap.size=256m \
-        -Dfs.azure.account.key.{{ .Values.azure_storage_account }}.blob.core.windows.net: {{ .Values.azure_storage_secret }} \
         -Dconfig.file=/conf/telemetry-extractor.conf
+
     # volumes:
     #  - /host/path/to/job/artifacts:/opt/flink/usrlib
     # environment:
@@ -25,15 +27,16 @@ services:
     build: .
     depends_on:
       - jobmanager-te
+    # to config azure state backend add: -Dfs.azure.account.key.{{ azure_storage_account }}.blob.core.windows.net: {{ azure_storage_secret }}
     command:
       - |
         /opt/flink/bin/taskmanager.sh start-foreground \
         -Djobmanager.rpc.address=jobmanager-te \
         -Dtaskmanager.rpc.port=6122 \
         -Dtaskmanager.heap.size=256m \
-        -Dfs.azure.account.key.{{ .Values.azure_storage_account }}.blob.core.windows.net: {{ .Values.azure_storage_secret }} \
         -Dconfig.file=/conf/telemetry-extractor.conf
     scale: 1
+
     # volumes:
     #  - /host/path/to/job/artifacts:/opt/flink/usrlib
     # environment:
