@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  jobmanager-te:
+    build: .
+    ports:
+      - "8081:8081"
+    command:
+      - |
+        /opt/flink/bin/standalone-job.sh start-foreground \
+        --job-classname=org.sunbird.dp.extractor.task.TelemetryExtractorStreamTask \
+        -Djobmanager.rpc.address=jobmanager-te \
+        -Djobmanager.rpc.port=6123 \
+        -Dparallelism.default=1 \
+        -Dblob.server.port=6124 \
+        -Dqueryable-state.server.ports=6125 \
+        -Djobmanager.heap.size=256m \
+        -Dfs.azure.account.key.{{ .Values.azure_storage_account }}.blob.core.windows.net: {{ .Values.azure_storage_secret }} \
+        -Dconfig.file=/conf/telemetry-extractor.conf
+    # volumes:
+    #  - /host/path/to/job/artifacts:/opt/flink/usrlib
+    # environment:
+
+  taskmanager-te:
+    build: .
+    depends_on:
+      - jobmanager-te
+    command:
+      - |
+        /opt/flink/bin/taskmanager.sh start-foreground \
+        -Djobmanager.rpc.address=jobmanager-te \
+        -Dtaskmanager.rpc.port=6122 \
+        -Dtaskmanager.heap.size=256m \
+        -Dfs.azure.account.key.{{ .Values.azure_storage_account }}.blob.core.windows.net: {{ .Values.azure_storage_secret }} \
+        -Dconfig.file=/conf/telemetry-extractor.conf
+    scale: 1
+    # volumes:
+    #  - /host/path/to/job/artifacts:/opt/flink/usrlib
+    # environment:
