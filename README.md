@@ -6,7 +6,7 @@ Configuration and setup files for deploying Sunbird Data Pipeline Flink Jobs
 ### Build inside docker container
 
 To build flink-jobs inside a docker container
-- Install docker and docker-compose
+- Install git, docker and docker-compose (no need to install/manage java-11/8, maven)
 - `cd build/` and clone sunbird-data-pipeline (checkout branch release-3.6.0)
 - run `install.sh`
 - if everything went well there would be a `sunbird-dp-distribution-1.0.tar.gz` file in `build/dist/`
