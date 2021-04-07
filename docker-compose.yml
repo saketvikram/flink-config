@@ -13,7 +13,7 @@ services:
         -Dparallelism.default=1
         -Dblob.server.port=6124
         -Dqueryable-state.server.ports=6125
-        -Dconfig.file=/conf/telemetry-extractor.conf
+        -Dconfig.file=/conf/telemetry-extractor-comb.conf
 
   taskmanager-te:
     build: .
@@ -23,5 +23,5 @@ services:
         /opt/flink/bin/taskmanager.sh start-foreground
         -Djobmanager.rpc.address=jobmanager-te
         -Dtaskmanager.rpc.port=6122
-        -Dconfig.file=/conf/telemetry-extractor.conf
+        -Dconfig.file=/conf/telemetry-extractor-comb.conf
     scale: 1
