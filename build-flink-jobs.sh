@@ -1,4 +1,4 @@
-# install git, java-11/8, mvn, scala-2.12.11, flink-1.12.0, docker, docker-compose
+# install git, java-11/8, mvn-3.6.3, scala-2.12.11, flink-1.12.0, docker, docker-compose
 
 # download
 git clone https://github.com/project-sunbird/sunbird-data-pipeline.git
@@ -16,6 +16,6 @@ mvn clean -DskipTests install
 
 
 cd sunbird-dp-distribution
-# package, create tar.gz, create docker image
-mvn clean -DskipTests package
+# package, create tar.gz, this would also take a while the first time around
+mvn -DskipTests -DskipDockerBuild package
 
