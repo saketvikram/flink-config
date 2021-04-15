@@ -13,7 +13,6 @@ services:
         -Dparallelism.default=1
         -Dblob.server.port=6124
         -Dqueryable-state.server.ports=6125
-        -Djobmanager.flink.memory.size=512m
         --config.file.path /config/telemetry-extractor.conf
 
   taskmanager-te:
@@ -24,6 +23,5 @@ services:
         /opt/flink/bin/taskmanager.sh start-foreground
         -Djobmanager.rpc.address=jobmanager-te
         -Dtaskmanager.rpc.port=6122
-        -Dtaskmanager.flink.memory.size=512m
         --config.file.path /config/telemetry-extractor.conf
     scale: 1
