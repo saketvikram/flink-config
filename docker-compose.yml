@@ -23,5 +23,4 @@ services:
         /opt/flink/bin/taskmanager.sh start-foreground
         -Djobmanager.rpc.address=jobmanager-te
         -Dtaskmanager.rpc.port=6122
-        --config.file.path /config/telemetry-extractor-comb.conf
     scale: 1
