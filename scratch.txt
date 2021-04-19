@@ -10,3 +10,63 @@ https://issues.apache.org/jira/browse/FLINK-17493
 https://issues.apache.org/jira/browse/FLINK-9009
 
 https://issues.apache.org/jira/browse/CASSANDRA-10837
+
+
+
+TODO:
+1) Flink-golden-data python script + Readme file
+2) Fork 3.9.0 add script
+3) Discuss with Ranga on creating pull request, as well as separate repo for dp-flink local install
+4) Explore Data products and Create Documentation
+5) Write the websocket server and implement frontend for kafka console
+6) Figure out Flink memory config and run all flink jobs from docker compose
+7) Separate kafka installation for Azure Flink setup, create relevant topics
+8) Configure separate state backend
+
+
+# missing config from kp activity aggregator
+
+activity {
+      module.aggs.enabled = true
+      input.dedup.enabled = true
+      filter.processed.enrolments = true
+      collection.status.cache.expiry = 3600
+    }
+    service {
+      search {
+        basePath = "http://11.2.6.6/search"
+      }
+    }
+
+AZURE_STORAGE_ACCOUNT=igot
+AZURE_STORAGE_SECRET=4WCx35Qb3qnQOgkrkjkOz6shiJ264idVRFJc6HErwfyaR5V/weC7n+7tW4bz5NdcEifWeVT3W9dmZxTokZ7uAw==
+
+
+fs.azure.account.key.${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net=${AZURE_STORAGE_SECRET}
+
+
+Total Process Memory = Total Flink Memory + JVM Metaspace + JVM Overhead
+Total Flink Memory = JVM Heap + Off-Heap Memory
+
+
+
+# Total process memory = JVM Heap + Off-Heap
+jobmanager.memory.process.size=256m
+
+# Total flink memory = JVM Heap + off-Heap Memory
+jobmanager.memory.flink.size
+
+# JVM Heap
+jobmanager.memory.heap.size
+
+# Off-Heap = Off-Heap Memory + JVM metaspace + JVM Overhead
+# Off-Heap Memory
+jobmanager.memory.off-heap.size
+
+# JVM metaspace
+jobmanager.memory.jvm-metaspace.size
+
+# JVM Overhead [0.1 * Total process memory = 25.6m
+jobmanager.memory.jvm-overhead.min=16m
+jobmanager.memory.jvm-overhead.max=32m
+jobmanager.memory.jvm-overhead.fraction=0.1

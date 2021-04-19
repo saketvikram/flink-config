@@ -14,6 +14,10 @@ services:
         -Dparallelism.default=1
         -Dblob.server.port=6124
         -Dqueryable-state.server.ports=6125
+        -Djobmanager.memory.process.size=256m
+        -Djobmanager.memory.jvm-overhead.min=16m
+        -Djobmanager.memory.jvm-overhead.max=32m
+        -Djobmanager.memory.jvm-overhead.fraction=0.1
         --config.file.path /config/telemetry-extractor-comb.conf
 
   taskmanager-te:
@@ -24,4 +28,8 @@ services:
         /opt/flink/bin/taskmanager.sh start-foreground
         -Djobmanager.rpc.address=jobmanager-te
         -Dtaskmanager.rpc.port=6122
+        -Dtaskmanager.memory.process.size=256m
+        -Dtaskmanager.memory.jvm-overhead.min=16m
+        -Dtaskmanager.memory.jvm-overhead.max=32m
+        -Dtaskmanager.memory.jvm-overhead.fraction=0.1
     scale: 1
