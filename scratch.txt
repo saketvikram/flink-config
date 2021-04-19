@@ -51,10 +51,10 @@ Total Flink Memory = JVM Heap + Off-Heap Memory
 
 
 # Total process memory = JVM Heap + Off-Heap
-jobmanager.memory.process.size=492m
+jobmanager.memory.process.size=576m
 
 # Total flink memory = JVM Heap + off-Heap Memory
-jobmanager.memory.flink.size=396mb
+jobmanager.memory.flink.size=480mb
 
 # JVM Heap
 jobmanager.memory.heap.size=128m
@@ -66,7 +66,7 @@ jobmanager.memory.off-heap.size=128m
 # JVM metaspace
 jobmanager.memory.jvm-metaspace.size=32mb
 
-# JVM Overhead [0.1 * Total process memory = 49.2m]
+# JVM Overhead [0.1 * Total process memory = 57.6m]
 jobmanager.memory.jvm-overhead.min=32m
 jobmanager.memory.jvm-overhead.max=64m
 jobmanager.memory.jvm-overhead.fraction=0.1
