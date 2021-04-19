@@ -64,7 +64,7 @@ jobmanager.memory.heap.size
 jobmanager.memory.off-heap.size
 
 # JVM metaspace
-jobmanager.memory.jvm-metaspace.size
+jobmanager.memory.jvm-metaspace.size=32mb
 
 # JVM Overhead [0.1 * Total process memory = 25.6m
 jobmanager.memory.jvm-overhead.min=16m
