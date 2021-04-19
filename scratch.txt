@@ -38,10 +38,6 @@ activity {
       }
     }
 
-AZURE_STORAGE_ACCOUNT=igot
-AZURE_STORAGE_SECRET=4WCx35Qb3qnQOgkrkjkOz6shiJ264idVRFJc6HErwfyaR5V/weC7n+7tW4bz5NdcEifWeVT3W9dmZxTokZ7uAw==
-
-
 fs.azure.account.key.${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net=${AZURE_STORAGE_SECRET}
 
 
